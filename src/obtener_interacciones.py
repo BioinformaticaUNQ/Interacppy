@@ -36,6 +36,10 @@ def obtener_interacciones_string(proteina_id):
     except requests.exceptions.RequestException as e:
         print(f"Error en la solicitud: {e}")
         return []
+    
+    '''
+    
+    
 
 # Ejemplo de uso (luego pasar a tests)
 proteina_id = "P12345"  # Sustituir por el Uniprot ID de la proteína que desees
@@ -48,3 +52,5 @@ if interacciones:
         print(f"- {interaccion[0]} <-> {interaccion[1]}")
 else:
     print("No se obtuvieron interacciones.")
+
+    '''
