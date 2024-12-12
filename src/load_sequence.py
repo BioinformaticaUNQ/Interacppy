@@ -9,14 +9,11 @@ def load_sequence_from_pdb(pdb_id):
     url = f"https://files.rcsb.org/download/{pdb_id}.pdb"
     response = requests.get(url)
 
-    
-
-
     if response.status_code != 200:
         print(f"Error al descargar el archivo PDB con ID {pdb_id}")
         return None
     
-    pdb_data = response.text
+    pdb_data = response.content.decode('utf-8')
     # Ahora, extraemos la secuencia de aminoácidos del PDB
     sequence = []
     

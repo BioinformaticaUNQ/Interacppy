@@ -1,7 +1,5 @@
 import unittest
-import requests
 from unittest.mock import patch
-from io import StringIO
 from src.load_sequence import load_sequence_from_pdb, load_sequence_from_uniprot
 
 

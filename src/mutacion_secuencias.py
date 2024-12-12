@@ -1,11 +1,11 @@
-def mutar_secuencia(secuencia, posicion, nuevo_residuo):
+def mutar_secuencia(secuencia, posicion, aminoacido):
     """
     Esta función realiza una mutación en la secuencia en la posición indicada.
     
     Args:
     secuencia (str): La secuencia original de la proteína o ácido nucleico.
     posicion (int): La posición de la mutación (índice de la secuencia).
-    nuevo_residuo (str): El nuevo residuo (base o aminoácido) que reemplazará al actual.
+    aminoacido (str): El nuevo residuo (base o aminoácido) que reemplazará al actual.
     
     Returns:
     str: La secuencia mutada.
@@ -15,7 +15,7 @@ def mutar_secuencia(secuencia, posicion, nuevo_residuo):
         raise ValueError("La posición está fuera de los límites de la secuencia.")
     
     # Realizar la mutación
-    secuencia_mutada = secuencia[:posicion] + nuevo_residuo + secuencia[posicion+1:]
+    secuencia_mutada = secuencia[:posicion] + aminoacido + secuencia[posicion+1:]
     
     return secuencia_mutada
 
