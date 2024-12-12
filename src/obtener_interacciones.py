@@ -1,6 +1,6 @@
 import requests
 
-def obtener_interacciones_string(proteina_id):
+def obtener_interacciones(proteina_id):
     """
     Obtiene las interacciones proteicas a partir de la base de datos STRING
     usando el identificador de proteína (Uniprot ID o PDB ID).

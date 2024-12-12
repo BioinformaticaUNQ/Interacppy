@@ -12,16 +12,16 @@ def load_sequence_from_pdb(pdb_id):
     if response.status_code != 200:
         print(f"Error al descargar el archivo PDB con ID {pdb_id}")
         return None
-    
+    file = response.content.decode('utf-8')
+
+    '''
     with open("archivo.pdb", "wb") as file:
         # Descargamos el contenido por bloques de 1024 bytes
         for chunk in response.iter_content(chunk_size=1024):
             if chunk:
                 file.write(chunk)
     print("Archivo descargado correctamente.")
-    
     '''
-    #pdb_data =response .content.decode('utf-8')
     # Ahora, extraemos la secuencia de aminoácidos del PDB
     sequence = []
     
@@ -36,10 +36,6 @@ def load_sequence_from_pdb(pdb_id):
         return None
     
     return sequence
-
-    '''
-
-    return file
 
 def load_sequence_from_uniprot(uniprot_id):
     """
