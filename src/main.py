@@ -1,6 +1,5 @@
 import argparse
 import load_sequence
-import mutacion_secuencias
 import obtener_interacciones
 import visualizar_interacciones
 
@@ -9,7 +8,6 @@ def main():
     parser = argparse.ArgumentParser(description="Análisis de proteínas: carga de secuencias, mutación y análisis de interacciones.")
     parser.add_argument("--pdb", type=str, help="ID de PDB para cargar la secuencia de proteína.")
     parser.add_argument("--uniprot", type=str, help="ID de UniProt para cargar la secuencia de proteína.")
-    parser.add_argument("--mutacion", type=str, help="Secuencia de mutaciones en formato: PosicionAminoAcido (ejemplo: 3A).")
     parser.add_argument("--visualizar", action="store_true", help="Visualizar las interacciones de la proteína.")
     
     # Parsear los argumentos
@@ -28,11 +26,6 @@ def main():
         print("Debe proporcionar un ID de PDB o UniProt.")
         return
     
-    # Aplicar mutaciones a la secuencia si se proporcionó
-    if args.mutacion:
-        secuencia_mutada = mutacion_secuencias.aplicar_mutaciones(secuencia, args.mutacion)
-        print(f"Secuencia mutada: {secuencia_mutada}")
-    
     # Obtener y visualizar las interacciones si se requiere
     if args.pdb or args.uniprot:
         interacciones = obtener_interacciones.obtener_interacciones(uniprot_id=args.uniprot, pdb_id=args.pdb)
@@ -44,3 +37,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+

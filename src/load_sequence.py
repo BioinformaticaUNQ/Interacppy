@@ -7,17 +7,25 @@ def load_sequence_from_pdb(pdb_id):
     Carga la secuencia de proteína desde un archivo PDB usando el identificador PDB.
     """
     url = f"https://files.rcsb.org/download/{pdb_id}.pdb"
-    response = requests.get(url)
+    response = requests.get(url, stream=True)
 
     if response.status_code != 200:
         print(f"Error al descargar el archivo PDB con ID {pdb_id}")
         return None
     
-    pdb_data = response.content.decode('utf-8')
+    with open("archivo.pdb", "wb") as file:
+        # Descargamos el contenido por bloques de 1024 bytes
+        for chunk in response.iter_content(chunk_size=1024):
+            if chunk:
+                file.write(chunk)
+    print("Archivo descargado correctamente.")
+    
+    '''
+    #pdb_data =response .content.decode('utf-8')
     # Ahora, extraemos la secuencia de aminoácidos del PDB
     sequence = []
     
-    for line in pdb_data.splitlines():
+    for line in file.splitlines():
         if line.startswith("SEQRES"):
             sequence.append("".join(line[19:].split()))
     
@@ -28,6 +36,10 @@ def load_sequence_from_pdb(pdb_id):
         return None
     
     return sequence
+
+    '''
+
+    return file
 
 def load_sequence_from_uniprot(uniprot_id):
     """
@@ -52,6 +64,7 @@ def load_sequence_from_uniprot(uniprot_id):
         return None
 
 
+'''
 
 # EJEMPLO DE COMO SERIA
 
@@ -72,3 +85,4 @@ if uniprot_sequence:
     print(f"Secuencia de proteína de UniProt {uniprot_id}: {uniprot_sequence[:50]}...")  # Mostrar los primeros 50 aminoácidos
 
 
+'''
