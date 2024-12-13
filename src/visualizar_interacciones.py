@@ -4,7 +4,7 @@ import json
 
 def visualizar_interacciones(interacciones, formato="grafo"):
     """
-    Visualiza las interacciones de la proteína en diferentes formatos.
+    Visualiza las interacciones de la proteína en diferentes formatos usando UniProt IDs.
 
     :param interacciones: Lista de tuplas o diccionarios con las interacciones de la proteína.
     :param formato: "grafo" para graficar, "json" para exportar a formato JSON.
@@ -19,8 +19,8 @@ def visualizar_interacciones(interacciones, formato="grafo"):
         if isinstance(interactivo, tuple):
             # Si es una tupla, convertirla a un diccionario con un peso predeterminado
             interacciones_dict.append({
-                'interactor_a': interactivo[0],
-                'interactor_b': interactivo[1],
+                'interactor_a': interactivo[0],  # Asegúrate que sea un UniProt ID
+                'interactor_b': interactivo[1],  # Asegúrate que sea un UniProt ID
                 'peso': 1.0  # Peso predeterminado
             })
         elif isinstance(interactivo, dict):
@@ -43,7 +43,7 @@ def visualizar_interacciones(interacciones, formato="grafo"):
         nx.draw_networkx_nodes(G, pos, node_size=500, node_color='lightblue', alpha=0.6)
         nx.draw_networkx_edges(G, pos, width=2.0, alpha=0.7)
         nx.draw_networkx_labels(G, pos, font_size=12, font_family="Arial")
-        plt.title("Interacciones de Proteína")
+        plt.title("Interacciones de Proteína (UniProt IDs)")
         plt.show()
 
     elif formato == "json":
