@@ -35,13 +35,13 @@ def visualizar_interacciones(interacciones_data, formato="grafo"):
 
             # Definir colores según el score combinado
             if combined_score >= 0.8:
-                edge_colors.append("red")  # Muy alta proximidad
+                edge_colors.append("red")
             elif 0.6 <= combined_score < 0.8:
-                edge_colors.append("orange")  # Alta proximidad
+                edge_colors.append("orange")
             elif 0.4 <= combined_score < 0.6:
-                edge_colors.append("yellow")  # Proximidad media
+                edge_colors.append("yellow")
             else:
-                edge_colors.append("gray")  # Baja proximidad
+                edge_colors.append("gray")
 
             # Definir el grosor de la línea proporcional al score
             edge_widths.append(combined_score*2)
@@ -66,10 +66,10 @@ def visualizar_interacciones(interacciones_data, formato="grafo"):
 
         # Crear la leyenda manualmente
         legend_labels = {
-            "red": "Muy alta proximidad (>= 0.8)",
-            "orange": "Alta proximidad (0.6-0.8)",
-            "yellow": "Proximidad media (0.4-0.6)",
-            "gray": "Baja proximidad (< 0.4)",
+            "red": "Very high score (>= 0.8)",
+            "orange": "High score (0.6-0.8)",
+            "yellow": "Medium score (0.4-0.6)",
+            "gray": "Low score (< 0.4)",
         }
         for color, label in legend_labels.items():
             plt.plot([], [], color=color, marker='o', linestyle='None', markersize=10, label=label)
