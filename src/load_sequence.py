@@ -1,6 +1,7 @@
 import requests
 from Bio import SeqIO
 from io import StringIO
+import os
 
 def load_sequence_from_pdb(pdb_id):
     """
@@ -34,7 +35,6 @@ def load_sequence_from_pdb(pdb_id):
     if not sequence:
         print(f"No se pudo extraer la secuencia del PDB con ID {pdb_id}")
         return None
-    
     return sequence
 
 def load_sequence_from_uniprot(uniprot_id):
@@ -59,26 +59,46 @@ def load_sequence_from_uniprot(uniprot_id):
         print(f"Error al leer el archivo FASTA de UniProt: {e}")
         return None
 
-
-'''
-
-# EJEMPLO DE COMO SERIA
-
-# test
-
-
-pdb_id = "1A2B"  # ID de PDB válido
-uniprot_id = "P69905"  # ID de UniProt válido
-
-# Prueba de carga de secuencia desde PDB
-pdb_sequence = load_sequence_from_pdb(pdb_id)
-if pdb_sequence:
-    print(f"Secuencia de proteína del PDB {pdb_id}: {pdb_sequence[:50]}...")  # Mostrar los primeros 50 aminoácidos
-
-# Prueba de carga de secuencia desde UniProt
-uniprot_sequence = load_sequence_from_uniprot(uniprot_id)
-if uniprot_sequence:
-    print(f"Secuencia de proteína de UniProt {uniprot_id}: {uniprot_sequence[:50]}...")  # Mostrar los primeros 50 aminoácidos
-
-
-'''
+def load_sequence_from_file(file_path):
+    """
+    Carga la secuencia de la proteína y el ID de PDB desde un archivo PDB.
+    
+    :param file_path: Ruta del archivo PDB local.
+    :return: Tuple (secuencia, pdb_id) o (None, None) si no se encuentra la información.
+    """
+    secuencia = []
+    pdb_id = None  # Cambié 'uniprot_id' por 'pdb_id' para extraer el ID de PDB
+    
+    try:
+        with open(file_path, 'r') as f:
+            lines = f.readlines()
+        
+        # Extraer la secuencia de la proteína
+        for line in lines:
+            if line.startswith("SEQRES"):  # Las líneas que contienen la secuencia de la proteína
+                secuencia.append("".join(line[19:].split()))  # Concatenar las cadenas de aminoácidos
+        
+        secuencia = "".join(secuencia)  # Unir todas las cadenas de la secuencia
+        
+        # Buscar el ID de PDB en las líneas DBREF
+        for line in lines:
+            if line.startswith("DBREF"):
+                # La estructura de la línea DBREF es: DBREF <pdb_id> <cadena> <inicio> <fin> <base> <id_uniprot> <nombre_uniprot> ...
+                parts = line.split()  # Separar la línea en partes
+                if len(parts) > 1:  # Asegurarse de que haya al menos 2 partes
+                    pdb_id = parts[1]  # El ID de PDB está en la segunda columna (índice 1)
+                    break  # Salir del bucle una vez encontrado
+        
+        if not secuencia:
+            print("No se pudo encontrar la secuencia de la proteína en el archivo PDB.")
+            return None, None
+        
+        if not pdb_id:
+            print("No se encontró un ID de PDB en el archivo PDB.")
+            return secuencia, None
+        
+        return secuencia, pdb_id
+    
+    except Exception as e:
+        print(f"Error al procesar el archivo PDB: {e}")
+        return None, None
