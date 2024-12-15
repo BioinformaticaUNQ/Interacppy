@@ -1,0 +1,458 @@
+[
+    {
+        "proteina_1": "119959",
+        "proteina_2": "114618",
+        "scores": {
+            "combined_score": 0.501,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "119959",
+        "proteina_2": "112156",
+        "scores": {
+            "combined_score": 0.538,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "119959",
+        "proteina_2": "114860",
+        "scores": {
+            "combined_score": 0.548,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "119959",
+        "proteina_2": "106885",
+        "scores": {
+            "combined_score": 0.576,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "119959",
+        "proteina_2": "112020",
+        "scores": {
+            "combined_score": 0.681,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "119959",
+        "proteina_2": "106880",
+        "scores": {
+            "combined_score": 0.999,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "112156",
+        "proteina_2": "116945",
+        "scores": {
+            "combined_score": 0.432,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "112156",
+        "proteina_2": "114618",
+        "scores": {
+            "combined_score": 0.468,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "112156",
+        "proteina_2": "114860",
+        "scores": {
+            "combined_score": 0.558,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "112156",
+        "proteina_2": "106885",
+        "scores": {
+            "combined_score": 0.598,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "112156",
+        "proteina_2": "112020",
+        "scores": {
+            "combined_score": 0.644,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "112156",
+        "proteina_2": "AC145207",
+        "scores": {
+            "combined_score": 0.661,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "112156",
+        "proteina_2": "106880",
+        "scores": {
+            "combined_score": 0.999,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "106885",
+        "proteina_2": "114618",
+        "scores": {
+            "combined_score": 0.412,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "106885",
+        "proteina_2": "114860",
+        "scores": {
+            "combined_score": 0.524,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "106885",
+        "proteina_2": "112020",
+        "scores": {
+            "combined_score": 0.575,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "106885",
+        "proteina_2": "AC145207",
+        "scores": {
+            "combined_score": 0.711,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "106885",
+        "proteina_2": "106880",
+        "scores": {
+            "combined_score": 0.999,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "114860",
+        "proteina_2": "114618",
+        "scores": {
+            "combined_score": 0.426,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "114860",
+        "proteina_2": "116945",
+        "scores": {
+            "combined_score": 0.667,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "114860",
+        "proteina_2": "115164",
+        "scores": {
+            "combined_score": 0.69,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "114860",
+        "proteina_2": "112020",
+        "scores": {
+            "combined_score": 0.988,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "114860",
+        "proteina_2": "106880",
+        "scores": {
+            "combined_score": 0.998,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "116383",
+        "proteina_2": "116945",
+        "scores": {
+            "combined_score": 0.585,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "116383",
+        "proteina_2": "115164",
+        "scores": {
+            "combined_score": 0.92,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "116383",
+        "proteina_2": "106880",
+        "scores": {
+            "combined_score": 0.999,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "114618",
+        "proteina_2": "AC145207",
+        "scores": {
+            "combined_score": 0.405,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "114618",
+        "proteina_2": "112020",
+        "scores": {
+            "combined_score": 0.433,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "114618",
+        "proteina_2": "106880",
+        "scores": {
+            "combined_score": 0.999,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "115164",
+        "proteina_2": "112020",
+        "scores": {
+            "combined_score": 0.707,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "115164",
+        "proteina_2": "116945",
+        "scores": {
+            "combined_score": 0.965,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "115164",
+        "proteina_2": "106880",
+        "scores": {
+            "combined_score": 0.999,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "116945",
+        "proteina_2": "AC145207",
+        "scores": {
+            "combined_score": 0.4,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "116945",
+        "proteina_2": "112020",
+        "scores": {
+            "combined_score": 0.707,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "116945",
+        "proteina_2": "106880",
+        "scores": {
+            "combined_score": 0.999,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "112020",
+        "proteina_2": "AC145207",
+        "scores": {
+            "combined_score": 0.444,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "112020",
+        "proteina_2": "106880",
+        "scores": {
+            "combined_score": 0.999,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    },
+    {
+        "proteina_1": "106880",
+        "proteina_2": "AC145207",
+        "scores": {
+            "combined_score": 0.999,
+            "tscore": 0,
+            "dscore": 0,
+            "escore": 0,
+            "pscore": 0,
+            "nscore": 0
+        }
+    }
+]

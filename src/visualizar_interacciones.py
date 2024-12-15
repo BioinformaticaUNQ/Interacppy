@@ -2,18 +2,24 @@ import networkx as nx
 import matplotlib.pyplot as plt
 import json
 
-def visualizar_interacciones(interacciones_data, formato="grafo"):
+def visualizar_interacciones(interacciones_data, proteina_principal, formato="grafo", salida="U"):
     """
-    Visualiza las interacciones de la proteína en diferentes formatos usando UniProt IDs.
+    Visualiza las interacciones de la proteína en diferentes formatos.
 
-    :param interacciones_data: Diccionario con las interacciones y la proteína principal.
+    :param interacciones_data: Lista con las interacciones.
+    :param proteina_principal: Nombre o identificador de la proteína principal.
     :param formato: "grafo" para graficar, "json" para exportar a formato JSON.
+    :param salida: Carácter para indicar el formato de salida: "U" (UniProt), "E" (Ensembl), "P" (PDB), etc.
     """
     interacciones = interacciones_data
 
     if not interacciones:
         print("No se encontraron interacciones.")
         return
+
+    # Traducción del carácter `salida` a texto completo
+    formatos = {"U": "UniProt ID", "E": "Ensembl ID", "P": "PDB ID"}
+    tipo_salida = formatos.get(salida.upper(), "Otro formato")
 
     if formato == "grafo":
         # Crear un grafo de las interacciones usando NetworkX
@@ -22,7 +28,7 @@ def visualizar_interacciones(interacciones_data, formato="grafo"):
         # Configuración de colores y pesos para las aristas
         edge_colors = []
         edge_widths = []
-        node_colors = []
+        node_color = "lightgray"  # Color único para todos los nodos
 
         # Añadir nodos y aristas con sus pesos y colores
         for interaccion in interacciones:
@@ -44,25 +50,22 @@ def visualizar_interacciones(interacciones_data, formato="grafo"):
                 edge_colors.append("gray")
 
             # Definir el grosor de la línea proporcional al score
-            edge_widths.append(combined_score*2)
-
-        # Asignar colores a los nodos
-        for node in G.nodes():
-            node_colors.append("lightgray")
+            edge_widths.append(combined_score * 2)
 
         # Dibujar el grafo usando matplotlib
         plt.figure(figsize=(12, 10))
         pos = nx.spring_layout(G, seed=42)  # Diseño para los nodos (estable reproducibilidad)
 
         # Dibujar nodos y etiquetas
-        nx.draw_networkx_nodes(G, pos, node_size=700, node_color=node_colors, alpha=0.9)
+        nx.draw_networkx_nodes(G, pos, node_size=700, node_color=node_color, alpha=0.9)
         nx.draw_networkx_labels(G, pos, font_size=10, font_family="Arial", font_color="black")
 
         # Dibujar aristas con colores y grosores
         nx.draw_networkx_edges(G, pos, width=edge_widths, edge_color=edge_colors, alpha=0.8)
 
-        # Título y leyenda personalizada
-        plt.title("Interacciones de Proteína (UniProt IDs)", fontsize=14)
+        # Títulos dinámicos
+        plt.title(f"Interacciones de la proteína principal: {proteina_principal} ({tipo_salida})", fontsize=14)
+        plt.gcf().canvas.manager.set_window_title(f"Grafo de {proteina_principal} ({tipo_salida})")
 
         # Crear la leyenda manualmente
         legend_labels = {
