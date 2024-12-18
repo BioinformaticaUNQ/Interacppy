@@ -11,9 +11,11 @@ def visualizar_interacciones(interacciones_data, proteina_principal, formato="gr
     :param formato: "grafo" para graficar, "json" para exportar a formato JSON.
     :param salida: Carácter para indicar el formato de salida: "U" (UniProt), "E" (Ensembl), "P" (PDB), etc.
     """
-    interacciones = interacciones_data
+    # Asignar un valor por defecto a `salida` si no está definido
+    salida = salida or "U"
 
-    if not interacciones:
+    # Verificar si hay interacciones
+    if not interacciones_data:
         print("No se encontraron interacciones.")
         return
 
@@ -31,7 +33,7 @@ def visualizar_interacciones(interacciones_data, proteina_principal, formato="gr
         node_color = "lightgray"  # Color único para todos los nodos
 
         # Añadir nodos y aristas con sus pesos y colores
-        for interaccion in interacciones:
+        for interaccion in interacciones_data:
             proteina_1 = interaccion["proteina_1"]
             proteina_2 = interaccion["proteina_2"]
             combined_score = interaccion["scores"]["combined_score"]
@@ -83,7 +85,7 @@ def visualizar_interacciones(interacciones_data, proteina_principal, formato="gr
 
     elif formato == "json":
         # Exportar las interacciones en formato JSON
-        interacciones_json = json.dumps(interacciones, indent=4)
+        interacciones_json = json.dumps(interacciones_data, indent=4)
         print("Interacciones en formato JSON:")
         print(interacciones_json)
 

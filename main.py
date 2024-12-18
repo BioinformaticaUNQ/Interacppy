@@ -12,7 +12,7 @@ def main():
     
     # Argumentos de entrada
     parser.add_argument("--pdb", type=str, help="ID de PDB para cargar la secuencia de proteína (ej. 1A2B).")
-    parser.add_argument("--archivo", type=str, help="Ruta a un archivo .pdb local para cargar la secuencia de proteína.")
+    parser.add_argument("--archivo", type=str, help="Ruta a un archivo .pdb local")
     parser.add_argument("--uniprot", type=str, help="ID de UniProt para cargar la secuencia de proteína.")
     parser.add_argument("--visualizar", action="store_true", help="Visualizar las interacciones de la proteína.")
     
@@ -26,10 +26,13 @@ def main():
     secuencia = None
     id_iter = None
 
-    # Determinar el formato de salida
+    # Asignar un valor predeterminado a _salida
+    _salida = "U"  # Valor predeterminado: UniProt
+
+    # Determinar el formato de salida si el usuario especifica uno
     if args.salida:
         formato_salida_map = {"uniprot": "U", "ensembl": "E", "pdb": "P"}
-        salida = formato_salida_map.get(args.salida.lower(), "U") if args.salida else "U"  # Por defecto "U, de Uniprot"
+        _salida = formato_salida_map.get(args.salida.lower(), "U")
     
     # Validar que si se pasa un archivo, este tenga la extensión .pdb
     if args.archivo and not args.archivo.endswith(".pdb"):
@@ -75,17 +78,22 @@ def main():
             interacciones = obtener_interacciones.obtener_interacciones(id_iter)
 
         if interacciones:
+            # Crear un diccionario de identificadores
+            identificadores = {
+                "proteina_1": id_iter,
+                "proteina_2": "Otro_ID_relacionado"  # Aquí podrías obtener otros IDs si están disponibles
+            }
             print(f"Interacciones obtenidas: {interacciones}")
             # Guardar las interacciones en un archivo JSON si se especifica
             if args.guardar:
-                guardar_interacciones.guardar_interacciones_json(interacciones, args.guardar)
+                guardar_interacciones.guardar_interacciones_json(interacciones, args.guardar, identificadores)
         if args.visualizar:
             # Verificar si se pueden visualizar las interacciones
             if not interacciones:
                 print("Error: No hay interacciones para visualizar.")
                 return
             # Enviar las interacciones, el identificador de la proteína principal y el formato de salida
-            visualizar_interacciones.visualizar_interacciones(interacciones, id_iter, salida=salida)
+            visualizar_interacciones.visualizar_interacciones(interacciones, id_iter, salida=_salida)
 
 if __name__ == "__main__":
     main()
