@@ -13,6 +13,7 @@ def guardar_interacciones_json(interacciones, ruta_archivo, identificadores=None
         # Asegurarse de que la carpeta "resultados" exista
         if not os.path.exists('resultados'):
             os.makedirs('resultados')
+            
 
         # Asegurarse de que el archivo tenga la extensión .json
         if not ruta_archivo.lower().endswith('.json'):

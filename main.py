@@ -15,7 +15,7 @@ def main():
     parser.add_argument("--archivo", type=str, help="Ruta a un archivo .pdb local para cargar la secuencia de proteína.")
     parser.add_argument("--uniprot", type=str, help="ID de UniProt para cargar la secuencia de proteína.")
     parser.add_argument("--visualizar", action="store_true", help="Visualizar las interacciones de la proteína.")
-    
+
     # Argumento para la salida
     parser.add_argument("--salida", type=str, choices=["uniprot", "ensembl", "pdb"], help="Formato de salida: uniprot, ensembl, pdb.")
     parser.add_argument("--guardar", type=str, help="Ruta del archivo JSON donde guardar las interacciones.")

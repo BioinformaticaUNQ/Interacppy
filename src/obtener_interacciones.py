@@ -123,6 +123,7 @@ def obtener_interacciones(proteina_id, formato_salida="uniprot"):
 
         # Lista para almacenar las interacciones
         interacciones = []
+ 
 
         # Recolectar todos los identificadores para la conversión
         ids_para_convertir = set()

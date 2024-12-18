@@ -82,6 +82,7 @@ def visualizar_interacciones(interacciones_data, proteina_principal, formato="gr
 
         # Mostrar el grafo
         plt.show()
+        
 
     elif formato == "json":
         # Exportar las interacciones en formato JSON

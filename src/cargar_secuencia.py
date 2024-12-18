@@ -28,7 +28,7 @@ def load_sequence_from_pdb(pdb_id):
         print(f"No se pudo extraer la secuencia del PDB con ID {pdb_id}")
         return None
     return sequence
-
+    
 def load_sequence_from_uniprot(uniprot_id):
     """
     Carga la secuencia de proteína desde UniProt usando el ID de UniProt.
