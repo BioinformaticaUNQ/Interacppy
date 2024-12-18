@@ -9,7 +9,6 @@ La herramienta permite:
 - Consultar las interacciones de proteínas en la base de datos STRING.
 - Visualizar las interacciones obtenidas.
 - Guardar las interacciones en un archivo JSON.
-- Actualizar las tablas de mapeo.
 
 El programa está diseñado para ser ejecutado desde la terminal y ofrece flexibilidad en cuanto a las entradas y salidas, permitiendo trabajar tanto con archivos como con accesos a bases de datos externas.
 
