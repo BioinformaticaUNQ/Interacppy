@@ -10,8 +10,6 @@ La herramienta permite:
 - Visualizar las interacciones obtenidas.
 - Guardar las interacciones en un archivo JSON.
 
-El programa está diseñado para ser ejecutado desde la terminal y ofrece flexibilidad en cuanto a las entradas y salidas, permitiendo trabajar tanto con archivos como con accesos a bases de datos externas.
-
 ## Instalación
 
 Pasos para la Instalación
