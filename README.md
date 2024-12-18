@@ -13,6 +13,32 @@ La herramienta permite:
 
 El programa está diseñado para ser ejecutado desde la terminal y ofrece flexibilidad en cuanto a las entradas y salidas, permitiendo trabajar tanto con archivos como con accesos a bases de datos externas.
 
+## Instalación
+
+Pasos para la Instalación
+
+1. **Crear un entorno virtual con Python 3.10.12**:
+   ```bash
+   python3.10 -m venv myenv
+   ```
+
+2. **Activar el entorno virtual**:
+   - **Windows**:
+     ```bash
+     myenv\Scripts\activate
+     ```
+   - **macOS/Linux**:
+     ```bash
+     source myenv/bin/activate
+     ```
+
+3. **Instalar las dependencias necesarias**:
+   ```bash
+   pip install biopython matplotlib networkx
+   ```
+
+Este proceso configurará tu entorno con las bibliotecas necesarias para ejecutar el proyecto.
+
 ## Requerimientos
 
 El proyecto ha sido desarrollado utilizando Python y hace uso de varias bibliotecas. Los requisitos específicos para su ejecución son los siguientes:
@@ -36,8 +62,7 @@ El proyecto ha sido desarrollado utilizando Python y hace uso de varias bibliote
 ## Ejemplo de uso
 
 Cargar un ID de PDB y visualizar interacciones:
-python main.py --pdb 1A2B --visualizar
+"python main.py --pdb 1A2B --visualizar"
 
 Guardar interacciones en un archivo JSON:
-python main.py --uniprot P12345 --guardar interacciones.json
-python main.py --uniprot P12345 --visualizar --salida pdd --guardar interacciones
+"python main.py --uniprot P12345 --guardar interacciones.json"
