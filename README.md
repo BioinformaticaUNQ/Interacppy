@@ -34,8 +34,6 @@ Pasos para la Instalación
    pip install biopython matplotlib networkx
    ```
 
-Este proceso configurará tu entorno con las bibliotecas necesarias para ejecutar el proyecto.
-
 ## Requerimientos
 
 El proyecto ha sido desarrollado utilizando Python y hace uso de varias bibliotecas. Los requisitos específicos para su ejecución son los siguientes:
