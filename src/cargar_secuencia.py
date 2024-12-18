@@ -1,6 +1,6 @@
 import requests
-from Bio import SeqIO
 from io import StringIO
+from Bio import SeqIO
 
 
 def load_sequence_from_pdb(pdb_id):

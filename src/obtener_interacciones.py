@@ -121,8 +121,6 @@ def obtener_interacciones(proteina_id, formato_salida="uniprot"):
         # Procesar la respuesta JSON
         data = response.json()
 
-        print(data)
-
         # Lista para almacenar las interacciones
         interacciones = []
 
@@ -193,7 +191,6 @@ def obtener_interacciones(proteina_id, formato_salida="uniprot"):
                 interacciones.append({
                     "proteina_1": proteina_1,
                     "proteina_2": proteina_2,
-                    "pdb_id_original": proteina_id,
                     "scores": {
                         "combined_score": item.get("score", 0),
                         "tscore": item.get("transferred_score", 0),
@@ -221,41 +218,49 @@ def obtener_interacciones(proteina_id, formato_salida="uniprot"):
         }
     
 
-def obtener_interacciones_desde_pdb(pdb_id, formato_salida="uniprot"):
+def obtener_interacciones_desde_pdb(pdb_id):
     """
-    Obtiene las interacciones de una proteína a partir de su ID PDB, conservando el ID original.
+    Obtiene las interacciones de una proteína desde su código PDB.
+    
+    :param pdb_id: El código PDB de la proteína.
+    :return: Diccionario de interacciones o vacío si no se encuentran.
     """
-    # Obtener el UniProt ID desde el PDB
+    # Obtener el ID de UniProt desde el PDB
     uniprot_id = obtener_uniprot_desde_pdb(pdb_id)
-    if not uniprot_id:
-        print(f"No se pudo obtener el UniProt ID para {pdb_id}.")
-        return []
+    
+    if uniprot_id:
+        # Ahora obtenemos las interacciones usando el ID de UniProt
+        return obtener_interacciones.obtener_interacciones(uniprot_id)
+    else:
+        return {"interacciones": []}
 
-    # Obtener las interacciones desde STRING
-    interacciones = obtener_interacciones(uniprot_id, formato_salida)
-    
-    # Añadir el PDB ID original a cada interacción
-    for interaccion in interacciones:
-        interaccion["pdb_id_original"] = pdb_id
-    
-    return interacciones
 
 def obtener_uniprot_desde_pdb(pdb_id):
     """
     Obtiene el ID de UniProt de una proteína a partir de su código PDB.
+    
+    :param pdb_id: El código PDB de la proteína.
+    :return: ID de UniProt o None si no se encuentra.
     """
-    url = f"https://www.ebi.ac.uk/pdbe/api/pdb/entry/molecules/{pdb_id}"
+    # Construimos la URL de consulta
+    url = f"https://www.ebi.ac.uk/pdbe/api/pdb/entry/summary/{pdb_id}"
+    
     try:
         response = requests.get(url)
-        response.raise_for_status()
+        response.raise_for_status()  # Si la respuesta no es exitosa, generará una excepción
+        
+        # Analizamos el JSON de la respuesta
         data = response.json()
-        if pdb_id.upper() in data:
-            for molecule in data[pdb_id.upper()]:
-                for cross_ref in molecule.get("cross_references", []):
-                    if cross_ref["database"] == "UniProt":
-                        return cross_ref["id"]
-        print(f"No se encontró un ID de UniProt para el PDB {pdb_id}")
-        return None
+        
+        # Buscamos el ID de UniProt
+        uniprot_id = data.get(pdb_id.upper(), {}).get("uniprot", [None])[0]
+        
+        if uniprot_id:
+            return uniprot_id
+        else:
+            print(f"No se encontró un ID de UniProt para el PDB {pdb_id}")
+            return None
+        
     except requests.exceptions.RequestException as e:
         print(f"Error al obtener el UniProt desde PDB {pdb_id}: {e}")
         return None

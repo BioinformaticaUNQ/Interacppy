@@ -21,6 +21,7 @@ class TestMainMethods(unittest.TestCase):
 
         # Simulamos la llamada a la función con un ID de PDB
         pdb_id = "1A2B"
+        sequence = None
         sequence = load_sequence_from_pdb(pdb_id)
 
         self.assertIsNotNone(sequence)
