@@ -20,6 +20,7 @@ def convertir_a_uniprot(ids):
 
     mapeo_resultado = {}
 
+
     for id_ in ids:
         # Eliminar el prefijo "9606." si está presente
         id_sanitizado = id_.split(".")[-1]
@@ -36,7 +37,7 @@ def convertir_a_uniprot(ids):
             data = response.json()
             if data:
                 # Asumimos que el primer resultado es el más relevante
-                mapeo_resultado[id_] = data[0].get("primary_id")
+                mapeo_resultado[id_] = data[-1].get("primary_id")
             else:
                 # Si no hay resultados, dejamos el ID original
                 mapeo_resultado[id_] = None
@@ -156,11 +157,12 @@ def obtener_interacciones(proteina_id, formato_salida="uniprot"):
                 })
 
         elif formato_salida == "ensembl":
-            # Si el formato es Ensembl, usamos los Ensembl IDs directamente
+        # Si el formato es Ensembl, procesamos los Ensembl IDs directamente
             print(f"Usando Ensembl IDs...")
             for item in data:
-                proteina_1 = item['stringId_A']  # Usamos los IDs de Ensembl tal cual
-                proteina_2 = item['stringId_B']  # Usamos los IDs de Ensembl tal cual
+                # Procesar los IDs para eliminar todo lo que está antes del punto
+                proteina_1 = item['stringId_A'].split('.')[-1]  # Tomamos solo la parte después del punto
+                proteina_2 = item['stringId_B'].split('.')[-1]  # Tomamos solo la parte después del punto
 
                 # Guardar la interacción con los scores
                 interacciones.append({
@@ -173,8 +175,8 @@ def obtener_interacciones(proteina_id, formato_salida="uniprot"):
                         "escore": item.get("experiments_score", 0),
                         "pscore": item.get("prediction_score", 0),
                         "nscore": item.get("neighborhood_score", 0),
-                    },
-                })
+                    }
+                },)
 
         elif formato_salida == "pdb":
             print(f"Convirtiendo a PDB...")
