@@ -2,7 +2,6 @@ import requests
 from io import StringIO
 from Bio import SeqIO
 
-
 def load_sequence_from_pdb(pdb_id):
     """
     Carga la secuencia de proteína desde un archivo PDB usando el identificador PDB.
@@ -11,24 +10,30 @@ def load_sequence_from_pdb(pdb_id):
     response = requests.get(url, stream=True)
 
     if response.status_code != 200:
-        print(f"Error al descargar el archivo PDB con ID {pdb_id}")
+        print(f"El ID introducido no es un ID de PDB válido: {pdb_id}")
         return None
     file = response.content.decode('utf-8')
 
     # Ahora, extraemos la secuencia de aminoácidos del PDB
     sequence = []
-    
+    especie = None
+
     for line in file.splitlines():
         if line.startswith("SEQRES"):
             sequence.append("".join(line[19:].split()))
-    
+        elif line.startswith("SOURCE") and "ORGANISM_SCIENTIFIC" in line:
+            # Extraer el nombre científico de la especie
+            parts = line.split(":")
+            if len(parts) > 1:
+                especie = parts[1].strip().strip(";")
+
     # Unir todas las cadenas de la secuencia
     sequence = "".join(sequence)
     if not sequence:
         print(f"No se pudo extraer la secuencia del PDB con ID {pdb_id}")
-        return None
-    return sequence
-    
+        return None, especie
+    return sequence, especie
+
 def load_sequence_from_uniprot(uniprot_id):
     """
     Carga la secuencia de proteína desde UniProt usando el ID de UniProt.
@@ -37,7 +42,7 @@ def load_sequence_from_uniprot(uniprot_id):
     response = requests.get(url)
 
     if response.status_code != 200:
-        print(f"Error al descargar el archivo de UniProt con ID {uniprot_id}")
+        print(f"El ID introducido no es un ID de UniProt válido: {uniprot_id}")
         return None
 
     # Usamos BioPython para leer la secuencia en formato FASTA
@@ -53,14 +58,15 @@ def load_sequence_from_uniprot(uniprot_id):
 
 def load_sequence_from_file(file_path):
     """
-    Carga la secuencia de la proteína y el ID de PDB desde un archivo PDB.
+    Carga la secuencia de la proteína, el ID de PDB y la especie desde un archivo PDB.
     
     :param file_path: Ruta del archivo PDB local.
-    :return: Tuple (secuencia, pdb_id) o (None, None) si no se encuentra la información.
+    :return: Tuple (secuencia, pdb_id, especie) o (None, None, None) si no se encuentra la información.
     """
     secuencia = []
     pdb_id = None  # Cambié 'uniprot_id' por 'pdb_id' para extraer el ID de PDB
-    
+    especie = None
+
     try:
         with open(file_path, 'r') as f:
             lines = f.readlines()
@@ -69,6 +75,11 @@ def load_sequence_from_file(file_path):
         for line in lines:
             if line.startswith("SEQRES"):  # Las líneas que contienen la secuencia de la proteína
                 secuencia.append("".join(line[19:].split()))  # Concatenar las cadenas de aminoácidos
+            elif line.startswith("SOURCE") and "ORGANISM_SCIENTIFIC" in line:
+                # Extraer el nombre científico de la especie
+                parts = line.split(":")
+                if len(parts) > 1:
+                    especie = parts[1].strip().strip(";")
         
         secuencia = "".join(secuencia)  # Unir todas las cadenas de la secuencia
         
@@ -83,14 +94,14 @@ def load_sequence_from_file(file_path):
         
         if not secuencia:
             print("No se pudo encontrar la secuencia de la proteína en el archivo PDB.")
-            return None, None
+            return None, None, None
         
         if not pdb_id:
             print("No se encontró un ID de PDB en el archivo PDB.")
-            return secuencia, None
+            return secuencia, None, especie
         
-        return secuencia, pdb_id
+        return secuencia, pdb_id, especie
     
     except Exception as e:
         print(f"Error al procesar el archivo PDB: {e}")
-        return None, None
+        return None, None, None
